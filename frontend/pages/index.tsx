@@ -1,10 +1,12 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 import Head from "next/head";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 const Home: NextPage = () => {
   interface Card {
     id: number;
+    path: string;
     title: {
       en: string;
       pt: string;
@@ -22,6 +24,7 @@ const Home: NextPage = () => {
   const cards: Card[] = [
     {
       id: 1,
+      path: "/images/the_death_of_the_heiress.png",
       title: {
         en: "The Death of the Heiress",
         pt: "A Morte da Herdeira",
@@ -37,6 +40,7 @@ const Home: NextPage = () => {
     },
     {
       id: 2,
+      path: "/images/the_deadly_game_of_poker.png",
       title: {
         en: "The Mysterious Disappearance",
         pt: "A Desaparição Misteriosa",
@@ -52,6 +56,7 @@ const Home: NextPage = () => {
     },
     {
       id: 3,
+      path: "/images/the_mysterious_disappearance.png",
       title: {
         en: "The Deadly Game of Poker",
         pt: "O Jogo Mortal de Pôquer",
@@ -108,27 +113,31 @@ const Home: NextPage = () => {
           The Enigma Game
         </h1>
         <div className="flex gap-3 justify-center sm:justify-end w-1/4 p-0 sm:pr-4">
-          <button onClick={() => handleLanguageChange("en")}>English </button>
-          <button onClick={() => handleLanguageChange("pt")}>Portuguese</button>
+          <button onClick={() => handleLanguageChange("en")}>English 🇺🇸</button>
+          <button onClick={() => handleLanguageChange("pt")}>Portuguese 🇧🇷</button>
         </div>
       </header>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center m-10">
         <div className="flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
           {filteredCard ? (
-            <a className="w-96 rounded-xl border p-6 text-left min-h-[350px]">
+            <a className="w-96 rounded-xl border mx-2 p-6 text-left min-h-[350px]">
               <h3 className="text-2xl">{filteredCard.title[language]}</h3>
-              <div>
-                {isFront
-                  ? filteredCard.front[language]
-                  : filteredCard.back[language]}
+              <div className="flex flex-col items-center">
+                {isFront ? (
+                  <Fragment>
+                      <Image src={filteredCard.path} className="w-56 opacity-80" alt={filteredCard.title[language]} width={500} height={500}/>
+                    <div>{filteredCard.front[language]}</div>
+                  </Fragment>
+                ) : (
+                  filteredCard.back[language]
+                )}
               </div>
             </a>
           ) : (
             <div className="text-2xl font-medium">Selecione uma carta</div>
           )}
         </div>
-
         <div className="flex gap-4">
           <button
             onClick={handleCard}
