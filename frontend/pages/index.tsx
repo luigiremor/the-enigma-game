@@ -1,6 +1,6 @@
-import type { NextPage } from "next"
-import Head from "next/head"
-import { useState } from "react"
+import type { NextPage } from "next";
+import Head from "next/head";
+import { useState } from "react";
 
 const Home: NextPage = () => {
   const cards = [
@@ -25,24 +25,37 @@ const Home: NextPage = () => {
         "A man was found dead at a high stakes poker game. It's up to you to figure out how he died.",
       back: "The man had been playing in a high stakes poker game with a group of shady characters. During the game, he accused one of his opponents of cheating and a heated argument ensued. It was later revealed that the accused cheat had slipped poison into the victim's drink during the argument, causing him to collapse and die at the table. The cheat was eventually arrested and charged with murder.",
     },
-  ]
+  ];
 
   interface FilteredCard {
-    id: number
-    title: string
-    front: string
-    back: string
+    id: number;
+    title: string;
+    front: string;
+    back: string;
   }
 
-  const [filteredCard, setFilteredCard] = useState<FilteredCard>()
-  const [numbersUsed, setNumbersUsed] = useState([])
+  const [filteredCard, setFilteredCard] = useState<FilteredCard>();
+  const [numbersUsed, setNumbersUsed] = useState<number[]>([]);
+  const [isFront, setIsFront] = useState(true);
 
+  const handleSide = () => {
+    setIsFront(!isFront);
+  };
 
   const handleCard = () => {
-    const randomIndex = Math.floor(Math.random() * cards.length)
-    const randomCard = cards[randomIndex]
-    setFilteredCard(randomCard)
-  }
+    if (numbersUsed.length < cards.length) {
+      let randomIndex = Math.floor(Math.random() * cards.length);
+      while (numbersUsed.includes(randomIndex)) {
+        randomIndex = Math.floor(Math.random() * cards.length);
+      }
+      const randomCard = cards[randomIndex];
+      setFilteredCard(randomCard);
+      setNumbersUsed([...numbersUsed, randomIndex]);
+      setIsFront(true)
+    } else {
+      alert("Sem novas cartas");
+    }
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -51,24 +64,34 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="flex h-24 w-full items-center justify-center">
-        <h1 className="text-6xl font-bold">The Enigma Game</h1>
+        <h1 className="text-6xl font-bold text-center">The Enigma Game</h1>
       </header>
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center m-10">
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          {filteredCard && (
+          {filteredCard ? (
             <a className="mt-6 w-96 rounded-xl border p-6 text-left">
               <h3 className="text-2xl">{filteredCard.title}</h3>
-              <div>{filteredCard.front}</div>
+              <div>{isFront ? filteredCard.front : filteredCard.back}</div>
             </a>
-          )}
+          ) : <div className="text-2xl font-medium">Selecione uma carta</div>
+        
+        }
         </div>
 
-        <button
-          onClick={handleCard}
-          className="border-red-500 border mt-6 p-4 rounded-md text-white bg-red-500 hover:bg-red-600"
-        >
-          Selecionar carta
-        </button>
+        <div className="flex gap-4">
+          <button
+            onClick={handleCard}
+            className="border-red-500 border mt-6 p-4 rounded-md text-red-500 bg-white hover:bg-red-100 w-44"
+          >
+            Select {numbersUsed.length > 0 && "another"} card
+          </button>
+          <button
+            onClick={handleSide}
+            className="border-red-500 border mt-6 p-4 rounded-md text-white bg-red-500 hover:bg-red-600 w-44"
+          >
+            Twist card
+          </button>
+        </div>
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">
@@ -76,7 +99,7 @@ const Home: NextPage = () => {
         <a className="font-bold ml-1"> The Enigma Game!</a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
