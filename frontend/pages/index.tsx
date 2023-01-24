@@ -101,6 +101,13 @@ const Home: NextPage = () => {
     }
   };
 
+  const handleReset = () => {
+    if (window.confirm("Are you sure you want to reset the game?")) {
+      setNumbersUsed([]);
+      setFilteredCard(undefined);
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2 bg-slate-100">
       <Head>
@@ -111,11 +118,7 @@ const Home: NextPage = () => {
           name="description"
           content="The Enigma Game is a collection of short mystery stories. Each story is presented in the form of a tarot card, and the player must solve the mystery by reading the story on the back of the card."
         />
-        <meta
-          name="keywords"
-          content="enigma, game, mystery, tarot, card"
-        />
-          
+        <meta name="keywords" content="enigma, game, mystery, tarot, card" />
       </Head>
       <header className="flex flex-col sm:flex-row h-24 w-full items-center justify-center mt-4">
         <div className="w-1/4"></div>
@@ -136,7 +139,13 @@ const Home: NextPage = () => {
               <div className="flex flex-col items-center">
                 {isFront ? (
                   <Fragment>
-                      <Image src={filteredCard.path} className="w-56 opacity-80" alt={filteredCard.title[language]} width={500} height={500}/>
+                    <Image
+                      src={filteredCard.path}
+                      className="w-56 opacity-80"
+                      alt={filteredCard.title[language]}
+                      width={500}
+                      height={500}
+                    />
                     <div>{filteredCard.front[language]}</div>
                   </Fragment>
                 ) : (
@@ -149,18 +158,29 @@ const Home: NextPage = () => {
           )}
         </div>
         <div className="flex gap-4">
-          <button
-            onClick={handleCard}
-            className="border-red-500 border mt-6 p-4 rounded-md text-red-500 bg-white hover:bg-red-100 w-44"
-          >
-            Select {numbersUsed.length > 0 && "another"} card
-          </button>
-          <button
-            onClick={handleSide}
-            className="border-red-500 border mt-6 p-4 rounded-md text-white bg-red-500 hover:bg-red-600 w-44"
-          >
-            Twist card
-          </button>
+          {numbersUsed.length < cards.length ? (
+            <Fragment>
+              <button
+                onClick={handleCard}
+                className="border-gray-500 border mt-6 p-4 rounded-md text-gray-500 bg-white hover:bg-gray-100 w-44"
+              >
+                Select {numbersUsed.length > 0 && "another"} card
+              </button>
+              <button
+                onClick={handleSide}
+                className="border-gray-500 border mt-6 p-4 rounded-md text-white bg-gray-600 hover:bg-gray-700 w-44"
+              >
+                Twist card
+              </button>
+            </Fragment>
+          ) : (
+            <button
+              onClick={handleReset}
+              className="border-gray-500 border mt-6 p-4 rounded-md text-white bg-gray-600 hover:bg-gray-700 w-44"
+            >
+              Reset
+            </button>
+          )}
         </div>
       </main>
 
