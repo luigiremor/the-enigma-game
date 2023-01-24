@@ -106,6 +106,16 @@ const Home: NextPage = () => {
       <Head>
         <title>The Enigma Game</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="title" content="The Enigma Game" />
+        <meta
+          name="description"
+          content="The Enigma Game is a collection of short mystery stories. Each story is presented in the form of a tarot card, and the player must solve the mystery by reading the story on the back of the card."
+        />
+        <meta
+          name="keywords"
+          content="enigma, game, mystery, tarot, card"
+        />
+          
       </Head>
       <header className="flex flex-col sm:flex-row h-24 w-full items-center justify-center mt-4">
         <div className="w-1/4"></div>
