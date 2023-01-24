@@ -102,26 +102,26 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center py-2 bg-slate-100">
       <Head>
         <title>The Enigma Game</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="flex flex-col sm:flex-row h-24 w-full items-center justify-center">
+      <header className="flex flex-col sm:flex-row h-24 w-full items-center justify-center mt-4">
         <div className="w-1/4"></div>
-        <h1 className="text-3xl md:text-6xl font-bold text-center sm:w-1/2">
-          The Enigma Game
+        <h1 className="flex justify-center items-center text-3xl md:text-4xl font-bold text-center sm:w-1/2">
+          <Image src="/images/logo.png" alt="Logo" width={100} height={100} />
         </h1>
         <div className="flex gap-3 justify-center sm:justify-end w-1/4 p-0 sm:pr-4">
-          <button onClick={() => handleLanguageChange("en")}>English 🇺🇸</button>
-          <button onClick={() => handleLanguageChange("pt")}>Portuguese 🇧🇷</button>
+          <button onClick={() => handleLanguageChange("en")}>🇺🇸</button>
+          <button onClick={() => handleLanguageChange("pt")}>🇧🇷</button>
         </div>
       </header>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center m-10">
         <div className="flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
           {filteredCard ? (
-            <a className="w-96 rounded-xl border mx-2 p-6 text-left min-h-[350px]">
+            <a className="w-96 rounded-xl border mx-2 p-6 text-left min-h-[350px] bg-white shadow-2xl">
               <h3 className="text-2xl">{filteredCard.title[language]}</h3>
               <div className="flex flex-col items-center">
                 {isFront ? (
