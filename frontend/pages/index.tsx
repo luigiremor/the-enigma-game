@@ -117,7 +117,7 @@ const Home: NextPage = () => {
           content="The Enigma Game is a collection of short mystery stories. Each story is presented in the form of a tarot card, and the player must solve the mystery by reading the story on the back of the card."
         />
         <meta name="keywords" content="enigma, game, mystery, tarot, card" />
-        <meta name="twitter:image" content="/images/logo.png" />
+        <meta name="og:image" content="/images/logo.png" />
       </Head>
       <LanguageContext.Provider value={{ language, setLanguage }}>
         <header className="flex flex-col sm:flex-row h-24 w-full items-center justify-center mt-4">
