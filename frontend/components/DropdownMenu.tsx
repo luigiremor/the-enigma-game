@@ -1,13 +1,9 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useContext } from "react";
-import { LanguageContext } from "../pages/context";
+import useLanguage from "../pages/hook";
 
 export default function DropdownMenu() {
-  const { language, setLanguage } = useContext(LanguageContext);
-
-  const handleLanguageChange = (newLanguage: "en" | "pt") => {
-    setLanguage(newLanguage);
-  };
+  const { language, handleLanguageChange } = useLanguage();
 
   return (
     <div className="fixed top-16 w-56 text-right">
@@ -32,7 +28,7 @@ export default function DropdownMenu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
+                      active ? "bg-gray-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     onClick={() => handleLanguageChange("en")}
                   >
@@ -46,11 +42,11 @@ export default function DropdownMenu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
+                      active ? "bg-gray-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     onClick={() => handleLanguageChange("pt")}
                   >
-                    Portugues
+                    Português
                   </button>
                 )}
               </Menu.Item>
