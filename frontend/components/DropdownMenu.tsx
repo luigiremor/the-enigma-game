@@ -1,6 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import useLanguage from "../pages/hook";
+import useLanguage from "../hooks/hook";
 
 export default function DropdownMenu() {
   const { language, handleLanguageChange } = useLanguage();

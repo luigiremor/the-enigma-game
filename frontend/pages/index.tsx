@@ -3,7 +3,7 @@ import Image from "next/image";
 import Head from "next/head";
 import DropdownMenu from "../components/DropdownMenu";
 import { Fragment, useState } from "react";
-import { LanguageContext } from "./context";
+import { LanguageContext } from "../contexts/context";
 
 const Home: NextPage = () => {
   interface Card {
