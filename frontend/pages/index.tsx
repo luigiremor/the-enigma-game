@@ -4,6 +4,7 @@ import Head from "next/head";
 import DropdownMenu from "../components/DropdownMenu";
 import { Fragment, useState } from "react";
 import { LanguageContext } from "../contexts/context";
+import { lang } from "../languages/languages";
 
 const Home: NextPage = () => {
   interface Card {
@@ -98,7 +99,7 @@ const Home: NextPage = () => {
   };
 
   const handleReset = () => {
-    if (window.confirm("Are you sure you want to reset the game?")) {
+    if (window.confirm(`${lang[language].resetConfirmation}`)) {
       setNumbersUsed([]);
       setFilteredCard(undefined);
     }
@@ -154,7 +155,7 @@ const Home: NextPage = () => {
                 </div>
               </a>
             ) : (
-              <div className="text-2xl font-medium">Selecione uma carta</div>
+              <div className="text-2xl font-medium">{lang[language].selectCard}</div>
             )}
           </div>
           <div className="flex gap-4">
@@ -163,7 +164,7 @@ const Home: NextPage = () => {
                 onClick={handleCard}
                 className="border-gray-500 border mt-6 p-4 rounded-md text-white bg-gray-600 hover:bg-gray-700 w-44"
               >
-                Select card
+                {lang[language].selectCardButton}
               </button>
             ) : numbersUsed.length < cards.length ? (
               <Fragment>
@@ -171,13 +172,13 @@ const Home: NextPage = () => {
                   onClick={handleCard}
                   className="border-gray-500 border mt-6 p-4 rounded-md text-gray-500 bg-white hover:bg-gray-100 w-44"
                 >
-                  Select {numbersUsed.length > 0 && "another"} card
+                  {lang[language].selectCardButton}
                 </button>
                 <button
                   onClick={handleSide}
                   className="border-gray-500 border mt-6 p-4 rounded-md text-white bg-gray-600 hover:bg-gray-700 w-44"
                 >
-                  Twist card
+                  {lang[language].twistCardButton}
                 </button>
               </Fragment>
             ) : (
@@ -185,14 +186,14 @@ const Home: NextPage = () => {
                 onClick={handleReset}
                 className="border-gray-500 border mt-6 p-4 rounded-md text-white bg-gray-600 hover:bg-gray-700 w-44"
               >
-                Reset
+                {lang[language].resetButton}
               </button>
             )}
           </div>
         </main>
 
         <footer className="flex h-24 w-full items-center justify-center border-t">
-          Soon you'll be able to donate to{" "}
+        {lang[language].donate}{" "}
           <a className="font-bold ml-1"> The Enigma Game!</a>
         </footer>
       </LanguageContext.Provider>
