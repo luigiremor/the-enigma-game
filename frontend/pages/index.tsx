@@ -112,7 +112,7 @@ const Home: NextPage = () => {
       <Head>
         <title>The Enigma Game</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/images/logo.png" />
+        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
         <meta name="title" content="The Enigma Game" />
         <meta
           name="description"
