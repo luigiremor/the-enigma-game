@@ -155,7 +155,9 @@ const Home: NextPage = () => {
                 </div>
               </a>
             ) : (
-              <div className="text-2xl font-medium">{lang[language].selectCard}</div>
+              <div className="text-2xl font-medium">
+                {lang[language].selectCard}
+              </div>
             )}
           </div>
           <div className="flex gap-4">
@@ -182,18 +184,26 @@ const Home: NextPage = () => {
                 </button>
               </Fragment>
             ) : (
-              <button
-                onClick={handleReset}
-                className="border-gray-500 border mt-6 p-4 rounded-md text-white bg-gray-600 hover:bg-gray-700 w-44"
-              >
-                {lang[language].resetButton}
-              </button>
+              <Fragment>
+                <button
+                  onClick={handleReset}
+                  className="border-red-500 border mt-6 p-4 rounded-md text-white bg-red-600 hover:bg-red-700 w-44"
+                >
+                  {lang[language].resetButton}
+                </button>
+                <button
+                  onClick={handleSide}
+                  className="border-gray-500 border mt-6 p-4 rounded-md text-white bg-gray-600 hover:bg-gray-700 w-44"
+                >
+                  {lang[language].twistCardButton}
+                </button>
+              </Fragment>
             )}
           </div>
         </main>
 
         <footer className="flex h-24 w-full items-center justify-center border-t">
-        {lang[language].donate}{" "}
+          {lang[language].donate}{" "}
           <a className="font-bold ml-1"> The Enigma Game!</a>
         </footer>
       </LanguageContext.Provider>

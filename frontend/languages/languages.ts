@@ -1,5 +1,7 @@
 export const lang = {
     en: {
+        optionsButton: 'Options',
+        infos: 'Infos',
         selectCard: 'Select a card',
         selectCardButton: 'Select a card',
         twistCardButton: 'Twist card',
@@ -8,6 +10,8 @@ export const lang = {
         donate: `Soon you'll be able to donate to`,
     },
     pt : {
+        optionsButton: 'Opções',
+        infos: 'Informações',
         selectCard: 'Selecione uma carta',
         selectCardButton: 'Selecione uma carta',
         twistCardButton: 'Gire a carta',
